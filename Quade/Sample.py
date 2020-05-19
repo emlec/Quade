@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 # Local imports
-from Quade.FastqWriter import FastqWriter
+from FastqWriter import FastqWriter
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 class Sample(object):

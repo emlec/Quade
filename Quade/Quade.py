@@ -1,8 +1,9 @@
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 try:
     # Standard library imports
-    import ConfigParser
+    import configparser
     import optparse
     import sys
     import os
@@ -16,7 +17,7 @@ try:
 
 except ImportError as E:
     print(E)
-    print("Please verify your dependencies. See Readme for more informations\n")
+    print("Please verify your dependencies. See Readme for more information\n")
     exit()
 
 
@@ -77,7 +78,7 @@ class Quade(object):
             self.conf = conf_file
 
             # Define a configuration file parser object and load the configuration file
-            cp = ConfigParser.RawConfigParser(allow_no_value=True)
+            cp = configparser.RawConfigParser(allow_no_value=True)
             cp.read(self.conf)
 
             # Quality section
@@ -131,7 +132,7 @@ class Quade(object):
             self._test_values()
 
         # Handle the many possible errors occurring during conf file parsing or variable test
-        except (ConfigParser.NoOptionError, ConfigParser.NoSectionError) as E:
+        except (configparser.NoOptionError, configparser.NoSectionError) as E:
             print("Option or section missing. Report to the template configuration file\n" + E.message)
             sys.exit(1)
         except (ValueError, AssertionError) as E:
@@ -144,7 +145,7 @@ class Quade(object):
     def __str__(self):
         msg = "QUADE CLASS\n\tParameters list\n"
         # list all values in object dict in alphabetical order
-        keylist = [key for key in self.__dict__.keys()]
+        keylist = [key for key in list(self.__dict__.keys())]
         keylist.sort()
         for key in keylist:
             msg += "\t{}\t{}\n".format(key, self.__dict__[key])
@@ -173,8 +174,8 @@ class Quade(object):
 
         # Write a report
         print("Generate_a csv report")
-        with open("Quade_report.csv", "wb") as report:
-            report.write("Program {}\tDate {}\n\n".format(self.VERSION, str(datetime.today())))
+        with open("Quade_report.csv", "w") as report:
+            report.write("Program {} (python3)\tDate {}\n\n".format(self.VERSION, str(datetime.today())))
             for descr, value in Sample.REPORT():
                 report.write("{}\t{}\n".format(descr, value))
 
@@ -197,10 +198,10 @@ class Quade(object):
             # Iterate over read in fastq files until it is exhaust
             try:
                 while True:
-                    read1 = R1_gen.next()
-                    read2 = R2_gen.next()
-                    index1 = I1_gen.next()
-                    index2 = I2_gen.next()
+                    read1 = next(R1_gen)
+                    read2 = next(R2_gen)
+                    index1 = next(I1_gen)
+                    index2 = next(I2_gen)
 
                     # Extract index and molecular sequences from index reads an
                     index = index1[self.idx1_pos["start"]:self.idx1_pos["end"]] + index2[
@@ -230,9 +231,9 @@ class Quade(object):
             # Iterate over reads in fastq files until exhaustion
             try:
                 while True:
-                    read1 = R1_gen.next()
-                    read2 = R2_gen.next()
-                    index1 = I1_gen.next()
+                    read1 = next(R1_gen)
+                    read2 = next(R2_gen)
+                    index1 = next(I1_gen)
 
                     # Extract index and molecular sequences from index reads
                     index = index1[self.idx1_pos["start"]:self.idx1_pos["end"]]

@@ -73,8 +73,8 @@ class FastqWriter(object):
     def flush_buffers(self):
         """Append to R1 and R2 fastq.gz files"""
         with gopen(self.R1_fastq_name, "ab") as fastq_file:
-            fastq_file.write(self.R1_buffer)
+            fastq_file.write(self.R1_buffer.encode('utf-8'))
             self.R1_buffer = ""
         with gopen(self.R2_fastq_name, "ab") as fastq_file:
-            fastq_file.write(self.R2_buffer)
+            fastq_file.write(self.R2_buffer.encode('utf-8'))
             self.R2_buffer = ""

@@ -5,7 +5,7 @@ def write_example_conf():
     Contain the template of the empty configuration file for Quade
     """
 
-    with open("Quade_conf_file.txt", 'wb') as fp:
+    with open("Quade_conf_file.txt", 'w') as fp:
         fp.write("""
 ###################################################################################################
 #                                   QUADE CONFIGURATION FILE                                      #

@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 # Third party imports
@@ -40,7 +41,8 @@ class FastqSeq(object):
 
         else:
             raise TypeError("qual is not a valid type : str, numpy.ndarray or list of int")
-
+        print(self.seq)
+        print(self.qual)
         assert len(self.seq) == len(self.qual), "Sequence length and quality string length are not equal."
 
     def __repr__(self):

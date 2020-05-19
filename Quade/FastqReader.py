@@ -4,7 +4,7 @@
 from gzip import open as gopen
 
 # Local imports
-from Quade.FastqSeq import FastqSeq
+from FastqSeq import FastqSeq
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -28,9 +28,9 @@ def FastqReader(fastq_file):
             # Try to generate a valid FastqSeq object
             try:
                 yield FastqSeq(
-                    name=name.rstrip()[1:].split()[0],
-                    seq=seq.rstrip(),
-                    qual=qual.rstrip())
+                    name=str(name.rstrip()[1:].split()[0], 'utf-8'),
+                    seq=str(seq.rstrip(), 'utf-8'),
+                    qual=str(qual.rstrip(), 'utf-8'))
 
                 i += 1
 
