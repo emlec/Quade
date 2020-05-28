@@ -28,7 +28,7 @@ class FastqWriter(object):
         msg = "FASTQ_WRITER CLASS\n"
         for key, value in self.__dict__.items():
             msg += "\t\t{}\t{}\n".format(key, value)
-        return (msg)
+        return msg
 
     def __repr__(self):
         return "<Instance of {} from {} >\n".format(self.__class__.__name__, self.__module__)
