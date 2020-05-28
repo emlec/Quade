@@ -65,9 +65,9 @@ class FastqWriter(object):
 
     def init_files(self):
         """Init empty files for R1 and R2.fastq.gz"""
-        with gopen(self.R1_fastq_name, "wb") as fastq_file:
+        with gopen(self.R1_fastq_name, "wb"):
             print("\tCreate {} file".format(self.R1_fastq_name))
-        with gopen(self.R2_fastq_name, "wb") as fastq_file:
+        with gopen(self.R2_fastq_name, "wb"):
             print("\tCreate {} file".format(self.R2_fastq_name))
 
     def flush_buffers(self):

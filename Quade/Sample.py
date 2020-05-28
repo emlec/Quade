@@ -99,10 +99,10 @@ class Sample(object):
         report.append(["Pair Undetermined", self.UNDETERMINED])
         if self.TOTAL - self.UNDETERMINED > 0:
             report.append(["Percent Pair pass quality (wo Undetermined)",
-                           self.PASS_QUAL * 100 / (self.TOTAL - self.UNDETERMINED)])
+                           round(self.PASS_QUAL * 100 / (self.TOTAL - self.UNDETERMINED),2)])
             report.append(["Percent Pair fail quality (wo Undetermined)",
-                           self.FAIL_QUAL * 100 / (self.TOTAL - self.UNDETERMINED)])
-            report.append(["Percent Pair Undetermined", self.UNDETERMINED * 100 / self.TOTAL])
+                           round(self.FAIL_QUAL * 100 / (self.TOTAL - self.UNDETERMINED),2)])
+            report.append(["Percent Pair Undetermined", round((self.UNDETERMINED * 100 / self.TOTAL),2)])
 
         for sample in self.SAMPLE_LIST:
             report.append([" ", " "])
@@ -111,9 +111,9 @@ class Sample(object):
             report.append(["Pair pass quality", sample.pass_qual])
             report.append(["Pair fail quality", sample.fail_qual])
             if sample.total > 0:
-                report.append(["Percent of total pair", sample.total * 100 / (self.TOTAL - self.UNDETERMINED)])
-                report.append(["Percent Pair pass quality", sample.pass_qual * 100 / sample.total])
-                report.append(["Percent Pair fail quality", sample.fail_qual * 100 / sample.total])
+                report.append(["Percent of total pair attributed to the sample (wo Undetermined)", round((sample.total * 100 / (self.TOTAL - self.UNDETERMINED)),2)])
+                report.append(["Percent Pair pass quality", round((sample.pass_qual * 100 / sample.total),2)])
+                report.append(["Percent Pair fail quality", round((sample.fail_qual * 100 / sample.total),2)])
 
         return report
 
