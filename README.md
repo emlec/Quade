@@ -44,7 +44,7 @@ If you have pip already installed, enter the following line to install packages:
 
 ## Get and install Quade
 
-* Clone the repository in **recursive mode** to download the main repo and its submodules ```git clone --recursive https://github.com/a-slide/Quade.git```
+* Clone the repository in **recursive mode** to download the main repo and its submodules ```git clone --recursive https://github.com/emlec/Quade.git```
 
 * Enter the src folder of the program folder and make the main script executable ```sudo chmod u+x Quade.py```
 
